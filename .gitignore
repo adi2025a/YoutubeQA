@@ -1,0 +1,52 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Environment
+.env
+.venv/
+venv/
+env/
+
+# Logs and caches
+*.log
+*.pot
+*.pyc
+*.pyo
+*.pyd
+*.db
+*.sqlite3
+*.egg-info/
+.cache/
+*.tmp
+
+# Jupyter Notebooks
+.ipynb_checkpoints
+
+# VS Code
+.vscode/
+
+# Mac/Linux
+.DS_Store
+
+# Python virtual environment metadata
+pip-wheel-metadata/
+*.egg
+*.eggs
+
+# FAISS index files
+*.index
+*.faiss
+*.npy
+
+# Google API credentials
+google_credentials.json
+
+# Build output
+build/
+dist/
+*.egg-info/
+
+# Docker
+docker-compose.override.yml
