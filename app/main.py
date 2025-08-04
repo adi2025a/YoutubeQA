@@ -1,6 +1,6 @@
-from fastapi import FastAPI, Query
+from fastapi import FastAPI
 from pydantic import BaseModel
-from app.utility.ask_question import answer_question
+from app.utility.answer_question import answer_question
 
 app = FastAPI()
 

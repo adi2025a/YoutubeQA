@@ -1,6 +1,6 @@
 import faiss
 import numpy as np
-from app.utility.ask_question import get_embeddings
+from app.utility.get_embeddings import get_embeddings
 
 def store_embeddings(embeddings):
     # Convert embeddings to numpy array if not already
@@ -21,16 +21,19 @@ def store_embeddings(embeddings):
     return index
 
 def search_faiss_index(question, index, chunks, embedding_model, top_k=5):
+    # Step 1: Get embedding of the user question
+    question_embedding = get_embeddings([question])  # Shape: (1, dim)
+    query_vector = np.array(question_embedding).astype('float32')
 
-    question_embedding = get_embeddings([question])
-    question_embedding = np.array(question_embedding).astype('float32')
-    faiss.normalize_L2(question_embedding)
+    # Step 2: Normalize query vector (if your index uses normalized embeddings)
+    faiss.normalize_L2(query_vector)
 
-    # Perform the search
-    distances, indices = index.search(question_embedding, top_k)
+    # Step 3: Search FAISS index
+    distances, indices = index.search(query_vector, top_k)
 
-    print("\nTop matching chunks:")
-    for i in range(top_k):
-        chunk_index = indices[0][i]
-        print(f"\nScore: {distances[0][i]}")
-        print(f"Chunk: {chunks[chunk_index]}")
+    # Step 4: Retrieve top matching text chunks
+    results = []
+    for idx in indices[0]:
+        results.append(chunks[idx])
+
+    return results
