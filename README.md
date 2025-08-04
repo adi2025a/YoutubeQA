@@ -18,7 +18,7 @@ This project is an intelligent chatbot that answers questions based on the trans
 
 ## 🧩 Tech Stack
 
-### 💻 Frontend
+### 💻 Frontend (repo - https://github.com/adi2025a/YoutubeQA-frontend )
 - React
 - Vite
 - Tailwind CSS
