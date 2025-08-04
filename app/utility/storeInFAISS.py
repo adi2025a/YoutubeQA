@@ -21,11 +21,11 @@ def store_embeddings(embeddings):
     return index
 
 def search_faiss_index(question, index, chunks, embedding_model, top_k=5):
-    # Step 1: Get embedding of the user question
-    question_embedding = get_embeddings([question])  # Shape: (1, dim)
+    # Step 1: Get embedding of the user question using the passed embedding model
+    question_embedding = embedding_model([question])  # Make sure it returns a list of vectors
     query_vector = np.array(question_embedding).astype('float32')
 
-    # Step 2: Normalize query vector (if your index uses normalized embeddings)
+    # Step 2: Normalize query vector (if your FAISS index is L2-normalized)
     faiss.normalize_L2(query_vector)
 
     # Step 3: Search FAISS index
@@ -37,3 +37,4 @@ def search_faiss_index(question, index, chunks, embedding_model, top_k=5):
         results.append(chunks[idx])
 
     return results
+

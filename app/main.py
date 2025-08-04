@@ -1,8 +1,19 @@
 from fastapi import FastAPI
 from pydantic import BaseModel
 from app.utility.answer_question import answer_question
+from fastapi.middleware.cors import CORSMiddleware
+
+
+
 
 app = FastAPI()
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],  # Use specific origin in production
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 class QARequest(BaseModel):
     youtube_url: str
