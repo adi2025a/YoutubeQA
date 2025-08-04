@@ -1,24 +1,44 @@
-# 🎥 YouTube Video Q&A Bot (Gemini + FAISS)
+# 🎥 YouTube Video Q&A Chatbot
 
-This project allows you to ask questions based on the content of any YouTube video. It transcribes the video, splits the transcript into chunks, embeds those using Google's Gemini embeddings, stores them in a FAISS vector index, and uses Gemini Pro to generate a context-aware answer.
+This project is an intelligent chatbot that answers questions based on the transcript of a YouTube video using Gemini AI. It features a React frontend and a FastAPI backend, with support for transcript processing, embedding storage with FAISS, and efficient caching.
 
 ---
 
 ## 🚀 Features
 
-- ✅ Extracts transcript from YouTube videos  
-- ✅ Splits long text into meaningful chunks  
-- ✅ Embeds content using Gemini's embedding model  
-- ✅ Stores and searches embeddings using FAISS  
-- ✅ Answers user questions using Gemini Pro  
-- ✅ Fast and scalable
+- 🔗 Accepts YouTube video links
+- 🧠 Answers user questions based on video transcript using Gemini API
+- 📄 Automatically extracts and chunks transcripts
+- ⚡ Uses FAISS for fast semantic search
+- 🧠 Uses Gemini API for answer generation
+- 🧠 Caches embeddings to avoid reprocessing
+- 💬 Responsive chatbot UI built with Tailwind CSS
 
 ---
 
-## 🧠 Tech Stack
+## 🧩 Tech Stack
 
-- **Python 3**
-- **FAISS** - Facebook AI Similarity Search
-- **Google Generative AI SDK (`google-generativeai`)**
-- **YouTube Transcript API**
-- **dotenv** for environment management
+### 💻 Frontend
+- React
+- Vite
+- Tailwind CSS
+
+### 🧠 Backend
+- FastAPI
+- FAISS
+- Pydantic
+- Google Generative AI (Gemini)
+- Custom utility modules
+
+---
+
+## ⚙️ How It Works
+
+1. User submits a YouTube video link and a question.
+2. Backend extracts transcript using the YouTube Transcript API.
+3. Transcript is split into chunks.
+4. Embeddings are generated and stored in FAISS index.
+5. Index is cached using video ID to avoid recomputation.
+6. Relevant chunks are retrieved from FAISS.
+7. Gemini API answers based on retrieved transcript content.
+8. Answer is returned and displayed in chat UI.
