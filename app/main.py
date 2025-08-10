@@ -23,3 +23,11 @@ def ask_question(data: QARequest):
         return {"answer": answer}
     except Exception as e:
         return {"error": str(e)}
+
+from db.config import SessionLocal
+from db import crud, schemas
+
+db = SessionLocal()
+videos = crud.get_videos(db)
+print(videos)
+
